@@ -12,12 +12,15 @@ __id2label = {
 file_path = 'annotated.csv'
 
 ##-----------------------------
-app = Flask("Annotator")
+app = Flask("Annotator",
+            static_url_path='', 
+            static_folder='static')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 ##------------------------------
 
 data = pd.read_csv(file_path)
 data.index = range(data.shape[0])
+print(data.shape)
 
 if 'label' not in data:
     data['label'] = None
@@ -25,6 +28,8 @@ if 'label' not in data:
 if 'label_id' not in data:
     data['label_id'] = None
 
+data['label'] = data['label'].fillna('')
+data['label_id'] = data['label_id'].fillna(-1)
 
 @app.route('/')
 def index():    
@@ -32,16 +37,17 @@ def index():
 
 @app.route("/get_next_item")
 def getItem():
-    if not data[~data['label_id'].isna()].empty:
-        index = random.choice(data[~data['label_id'].isna()].index)
-        print(index)
-        return {"data":dict(data.loc[index]),'index':index}
+    unlabeled = data[data['label_id'] == -1]
+    if not unlabeled.empty:
+        index = random.choice(unlabeled.index)
+        return {"data":dict(data.loc[index]),'index':int(index),'remaining':int(unlabeled.shape[0])}
     else:
         return {'error':'No more'}
 
 
 @app.route("/set_label/<index>/<label>")
 def setItem(index,label):
+    
     index = int(index)
     label = int(label)
     data.at[index,'label_id'] = label

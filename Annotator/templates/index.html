@@ -48,13 +48,17 @@
     <body>        
         <div class="container px-4 py-5" id="featured-3">
             <h2 class="pb-2 border-bottom">Annotate The Text</h2>
-            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">                
-                <div class="feature col-xl-8">
+            <div class="row g-4 py-5">                
+                <div class="feature col-md-12">
+                    <h6 id="info"></h6>
+                    <div id="text" class="mt-2 p-3 bg-primary text-white rounded">
+
+                    </div>
                 </div>          
-                <div class="feature col-xl-4">
-                    <button class="btn btn-primary btn-sm">&nbsp;Positive&nbsp;</button><br /><br />
-                    <button class="btn btn-warning btn-sm">Negative</button><br /><br />
-                    <button class="btn btn-secondary btn-sm">&nbsp;Neutral&nbsp;</button>
+                <div class="feature col-md-12">
+                    <button id="btn-pos" class="btn btn-primary btn-sm" onclick="setLabel(1)">&nbsp;Positive&nbsp;</button> &nbsp;&nbsp;
+                    <button id="btn-neg" class="btn btn-warning btn-sm" onclick="setLabel(2)">Negative</button> &nbsp;&nbsp;
+                    <button id="btn-neu" class="btn btn-secondary btn-sm" onclick="setLabel(0)">&nbsp;Neutral&nbsp;</button> &nbsp;&nbsp;
                 </div>
             </div>
             <h2 class="pb-2 border-bottom">Annotation Rules</h2>
@@ -134,5 +138,6 @@
                 </div>
             </div>
           </div>
+          <script src="js/main.js"></script>
     </body>
 </html>
