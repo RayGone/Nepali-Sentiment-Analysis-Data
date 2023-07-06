@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Annotator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <style>
+            .feature h2{
+                color:darkblue;
+                font-size: 1.5em;   
+                vertical-align: middle;          
+            }
+
+            .fa-regular{                
+                padding: 5px;
+                font-size: 1.5em;
+                color:whitesmoke;
+            }
+
+            .fa-face-angry{
+                background: #cb2d3e;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #ef473a, #cb2d3e);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #ef473a, #cb2d3e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            }
+
+            .fa-face-smile-beam{
+                background: #00F260;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            }
+
+            .fa-face-meh-blank{
+                background: #bdc3c7;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            }
+
+            li{
+                text-align: justify;
+            }
+        </style>
+    </head>
+    <body>        
+        <div class="container px-4 py-5" id="featured-3">
+            <h2 class="pb-2 border-bottom">Annotate The Text</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">                
+                <div class="feature col-xl-8">
+                </div>          
+                <div class="feature col-xl-4">
+                    <button class="btn btn-primary btn-sm">&nbsp;Positive&nbsp;</button><br /><br />
+                    <button class="btn btn-warning btn-sm">Negative</button><br /><br />
+                    <button class="btn btn-secondary btn-sm">&nbsp;Neutral&nbsp;</button>
+                </div>
+            </div>
+            <h2 class="pb-2 border-bottom">Annotation Rules</h2>
+            <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+              <div class="feature col">
+                <div class="feature-icon bg-primary bg-gradient">                    
+                    <h2><i class="fa-regular fa-face-smile-beam"></i><span>&nbsp;Positive</span></h2>
+                </div>                
+                <p>
+                    <ol type="1">
+                        <li>
+                            The speaker is using positive language, for example, expressions of support, admiration, positive attitude, forgiveness, fostering, success, positive emotional state.
+                        </li>
+                        <li>
+                            Positive state: There is an explicit or implicit clue in the text suggesting that the speaker is in a positive state, i.e., happy, admiring, relaxed, forgiving, etc.
+                        </li>
+                        <li>
+                            Positive: There is an explicit or implicit clue in the text suggesting that the speaker’s attitude or judgment of the PTO (Primary Target of Opinion) is positive (speaker is appreciative, thankful, excited, optimistic, or inspired by the primary entity).
+                        </li>
+                    </ol>
+                </p>
+              </div>
+              <div class="feature col">
+                <div class="feature-icon bg-primary bg-gradient">
+                    <h2><i class="fa-regular fa-face-angry"></i></i><span>&nbsp;Negative</span></h2>
+                </div>
+                <p>
+                    <ol type="1">
+                        <li>
+                            The speaker is using negative language, for example, expressions of criticism, judgment, negative attitude, questioning validity/competence, failure, negative emotion.
+                        </li>
+                        <li>
+                            The speaker is using expressions of sarcasm, ridicule, or mockery.
+                        </li>
+                        <li>
+                            Negative state: there is an explicit or implicit clue in the text suggesting that the speaker is in a negative state, i.e., sad, angry, anxious, violent, etc.
+                        </li>
+                        <li>
+                            Negative: There is an explicit or implicit clue in the text suggesting that the speaker’s attitude or judgment of the PTO is negative (speaker is critical, angry, disappointed in, pessimistic, expressing sarcasm about, or mocking the primary entity).
+                        </li>
+                    </ol>
+                </p>
+              </div>
+              <div class="feature col">
+                <div class="feature-icon bg-primary bg-gradient">                    
+                    <h2><i class="fa-regular fa-face-meh-blank"></i><span>&nbsp;Neutral</span></h2>
+                </div>
+                <p>
+                    <ol type="1">
+                        <li>
+                            The speaker is neither using positive language nor using negative language.
+                        </li>
+                        <li>
+                            Unknown state: There is no explicit or implicit indicator of the speaker’s emotional state.
+                        </li>
+                        <li>
+                            Unkown: There is no explicit or implicit clue indicating that the speaker feels positively or negatively.
+                        </li>
+                        <li>
+                            The speaker is using positive language in part and negative language in part.
+                        </li>
+                        <li>
+                            Mixed state: There is an explicit or implicit clue in the text suggesting that the speaker is experiencing both positive and negative feelings.
+                        </li>
+                        <li>
+                            Mixed: There is an explicit or implicit clue in the text suggesting that the speaker’s attitude or judgment of the PTO is both positive and negative.
+                        </li>
+                    </ol>
+                </p>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <i>
+                    Reference: <a href="https://aclanthology.org/W16-0429.pdf">A Practical Guide to Sentiment Annotation: Challenges and Solutions</a>
+                    </i>
+                </div>
+            </div>
+          </div>
+    </body>
+</html>
