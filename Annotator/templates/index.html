@@ -48,14 +48,19 @@
     <body>        
         <div class="container px-4 py-5" id="featured-3">
             <h2 class="pb-2 border-bottom">Annotate The Text</h2>
-            <div class="row g-4 py-5">                
-                <div class="feature col-md-12">
+            <div class="row g-4 py-5"> 
+                <div class="col-md-4">
+                    <span id="time"></span><br>
+                    <span id="count"></span><br>
+                    <span id="stat"></span>
+                </div>               
+                <div class="feature col-md-8">
                     <h6 id="info"></h6>
                     <div id="text" class="mt-2 p-3 bg-primary text-white rounded">
 
                     </div>
                 </div>          
-                <div class="feature col-md-12">
+                <div class="feature offset-md-6 col-md-6">
                     <button id="btn-pos" class="btn btn-primary btn-sm" onclick="setLabel(1)">&nbsp;Positive&nbsp;</button> &nbsp;&nbsp;
                     <button id="btn-neg" class="btn btn-warning btn-sm" onclick="setLabel(2)">Negative</button> &nbsp;&nbsp;
                     <button id="btn-neu" class="btn btn-secondary btn-sm" onclick="setLabel(0)">&nbsp;Neutral&nbsp;</button> &nbsp;&nbsp;

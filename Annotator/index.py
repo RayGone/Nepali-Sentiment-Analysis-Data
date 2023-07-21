@@ -3,13 +3,15 @@ from flask import render_template
 import pandas as pd
 import random
 
+random.seed(999)
+
 __id2label = {
     0 : "NEUTRAL",
     1 : "POSITIVE",
     2 : "NEGATIVE"
 }
 
-file_path = 'annotated.csv'
+file_path = 'annotate-target.csv'
 
 ##-----------------------------
 app = Flask("Annotator",
