@@ -19,7 +19,7 @@ function getText(){
                 }else{
                     index = data.index
                     document.getElementById('text').innerHTML = data['data']['Text']
-                    document.getElementById('info').innerHTML = "Remaining Unlabeled Data: "+data['remaining']
+                    document.getElementById('info').innerHTML = "Remaining: "+data['remaining']+", Labeled: "+(data['total']-data['remaining'])
                 }
             })
 }

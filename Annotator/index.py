@@ -41,7 +41,7 @@ def getItem():
     unlabeled = data[data['label_id'] == -1]
     if not unlabeled.empty:
         index = random.choice(unlabeled.index)
-        return {"data":data.loc[index].to_dict(),'index':int(index),'remaining':int(unlabeled.shape[0])}
+        return {"data":data.loc[index].to_dict(),'index':int(index),'remaining':int(unlabeled.shape[0]),'total':int(data.shape[0])}
     else:
         return {'error':'No more'}
 
