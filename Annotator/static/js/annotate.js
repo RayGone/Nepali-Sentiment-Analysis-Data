@@ -18,7 +18,7 @@ function getText(){
                     document.getElementById('text').innerHTML = "No Data to Label"
                 }else{
                     index = data.index
-                    document.getElementById('text').innerHTML = data['data']['Text']
+                    document.getElementById('text').innerHTML = data['data'][data['txt-col-name']]
                     document.getElementById('info').innerHTML = "Remaining: "+data['remaining']+", Labeled: "+(data['total']-data['remaining'])
                 }
             })
