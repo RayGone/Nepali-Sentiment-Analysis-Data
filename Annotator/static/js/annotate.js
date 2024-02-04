@@ -18,7 +18,7 @@ function getText(){
                     document.getElementById('text').innerHTML = "No Data to Label"
                 }else{
                     index = data.index
-                    document.getElementById('text').innerHTML = data['data']['Text']
+                    document.getElementById('text').innerHTML = data['data'][data['txt-col-name']]
                     document.getElementById('info').innerHTML = "Remaining: "+data['remaining']+", Labeled: "+(data['total']-data['remaining'])
                 }
             })
@@ -26,8 +26,15 @@ function getText(){
 
 function setLabel(label){
     count+=1
+    console.log(JSON.stringify({'index':index,'label': label}))
     document.getElementById('text').innerHTML = `<i class="fa-solid fa-spinner fa-spin-pulse" style='font-size:3em'></i>`
-    fetch(`/set_label/${index}/${label}`).then(
+    fetch(`/set_label`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({'index':index,'label': label})
+      }).then(
         response => {
             getText();
         }

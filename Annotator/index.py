@@ -1,61 +1,63 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, redirect, url_for, request, jsonify
+
+import json
 import pandas as pd
 import random
+import Project
 
 random.seed(999)
 
-__id2label = {
-    0 : "NEUTRAL",
-    1 : "POSITIVE",
-    2 : "NEGATIVE"
-}
-
-file_path = 'annotate-target.csv'
-
-##-----------------------------
 app = Flask("Annotator",
             static_url_path='', 
             static_folder='static')
-app.config['TEMPLATES_AUTO_RELOAD'] = True
-##------------------------------
 
-data = pd.read_csv(file_path)
-data.index = range(data.shape[0])
+app.config.from_pyfile('.env')
+app.config['PROJECTS'] = json.load(open(app.config['PROJECT_CONFIG'],'r'))['Projects']
 
-if 'label' not in data:
-    data['label'] = None
+project = Project.AnnotateProject()
 
-if 'label_id' not in data:
-    data['label_id'] = None
+@app.route('/',methods=['GET'])
+def index():   
+    projects = app.config['PROJECTS'] 
+    return render_template('index.html', name='index', projects=projects, num_of_projects = len(projects))
 
-data['label'] = data['label'].fillna('')
-data['label_id'] = data['label_id'].fillna(-1)
+@app.route("/init-project",methods=['GET'])
+def initialize():
+    name = request.args.get('project-name')
+    for config in app.config['PROJECTS']:
+        if config['Name'] == name:
+            project.initialize(config)
+            break
+        
+    return redirect(url_for('annotate'))
+    
+@app.route('/Annotate',methods=['GET'])
+def annotate():
+    if not project.isInitialized():
+        return redirect(url_for('index'))
+    
+    return render_template('annotationUI.html',name=project._name, labels = project.getId2Label())
 
-@app.route('/')
-def index():    
-    return render_template('index.html', name='index')
-
-@app.route("/get_next_item")
+@app.route("/get_next_item",methods=['GET'])
 def getItem():
-    unlabeled = data[data['label_id'] == -1]
-    if not unlabeled.empty:
-        index = random.choice(unlabeled.index)
-        return {"data":data.loc[index].to_dict(),'index':int(index),'remaining':int(unlabeled.shape[0]),'total':int(data.shape[0])}
+    row = project.selectRandomRow()
+    if not pd.DataFrame.from_dict(row).empty:
+        return row
     else:
         return {'error':'No more'}
 
 
-@app.route("/set_label/<index>/<label>")
-def setItem(index,label):
-    index = int(index)
-    label = int(label)
-    data.at[index,'label_id'] = label
-    data.at[index,'label'] = __id2label[label]
-    data.to_csv(file_path,index=False)
-    return dict(data.loc[index])
+@app.route("/set_label",methods=['POST'])
+def setItem():
+    # index = request.form.get('index')
+    # label = request.values.get('label')
+    index = request.json['index']
+    label = request.json['label']
+    data = project.setLabel(index,label)
+    return jsonify(data.to_dict())
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':    
+    print(app.url_map)
     app.run()
     pass

@@ -1,0 +1,5 @@
+*annotate-target.csv
+.config
+.env
+__pycache__
+!*.py

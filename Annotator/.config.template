@@ -1,0 +1,16 @@
+{
+    "Projects":[
+        {
+            "Name": "Project Name Here - This will be used to name the local copy of the source data during annotation - This needs to be unique",
+            "Description": "Optional Project Description",
+            "Target-Annotations":[ // List of the Target-Annotations.
+                "NEUTRAL", // This will have annotation value of 0
+                "POSITIVE",// This will have annotation value of 1
+                "NEGATIVE" // This will have annotation value of 2
+            ],
+            "Data-Source-Path": "The source data that needs to be annotated",
+            "Data-Destination-Path": "The path where the annotated data will be saved",            
+            "Source-Text-Label": "Header name in the file under which the text to be annotated is stored"
+        }
+    ]
+}
