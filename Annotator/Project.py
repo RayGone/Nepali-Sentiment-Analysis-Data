@@ -18,6 +18,11 @@ class AnnotateProject():
     def isInitialized(self):
         return not self.__data.empty
     
+    def getId2Label(self):
+        if not self.isInitialized():
+            return []
+        return self.__id2label
+    
     def __getLabel(self,id):
         return self.__id2label[id]
     

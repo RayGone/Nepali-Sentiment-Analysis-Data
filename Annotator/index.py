@@ -36,7 +36,7 @@ def annotate():
     if not project.isInitialized():
         return redirect(url_for('index'))
     
-    return render_template('annotationUI.html',name=project._name)
+    return render_template('annotationUI.html',name=project._name, labels = project.getId2Label())
 
 @app.route("/get_next_item",methods=['GET'])
 def getItem():
